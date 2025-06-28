@@ -3,7 +3,10 @@
     "name": "URL Decoder",
     "version": "1.0",
     "description": "Decode selected text using URL decode.",
-    "permissions": ["contextMenus", "activeTab", "tabs"],
+    "permissions": ["contextMenus", "activeTab"],
+    "action": {
+        "default_popup": "popup.html"
+    },
     "background": {
         "service_worker": "background.js"
     }
