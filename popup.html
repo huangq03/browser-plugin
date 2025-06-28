@@ -20,11 +20,23 @@
             margin-bottom: 5px;
             font-weight: bold;
         }
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <label for="originalText">Original Text:</label>
-    <textarea id="originalText" readonly></textarea>
+    <textarea id="originalText"></textarea>
+    <button id="decodeButton">Decode</button>
     <label for="decodedText">Decoded Text:</label>
     <textarea id="decodedText" readonly></textarea>
     <script src="popup.js"></script>
