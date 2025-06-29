@@ -57,6 +57,17 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
                     });
                 }
             }
+            else {
+                chrome.action.setPopup({ popup: 'url_decode_popup.html' }, () => {
+                        chrome.action.openPopup(() => {
+                            chrome.runtime.sendMessage({
+                                action: 'showUrlDecode',
+                                originalText: '',
+                                decodedText: ''
+                            });
+                        });
+                    });
+            }
             break;
         case 'jsonFormatter':
             if (info.selectionText) {
@@ -70,6 +81,14 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
                         });
                     });
                 });
+            } else {
+                chrome.action.openPopup(() => {
+                        chrome.runtime.sendMessage({
+                            action: 'showJsonFormat',
+                            originalText: '',
+                            formattedText: ''
+                        });
+                    });
             }
             break;
     }
