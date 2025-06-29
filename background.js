@@ -32,43 +32,42 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (info.menuItemId === 'urlDecoder') {
-        chrome.action.openPopup(() => {
-            if (info.selectionText) {
-                try {
-                    const decodedText = decodeURIComponent(info.selectionText);
-                    setTimeout(() => {
+        if (info.selectionText) {
+            try {
+                const decodedText = decodeURIComponent(info.selectionText);
+                chrome.action.setPopup({ popup: 'url_decode_popup.html' }, () => {
+                    chrome.action.openPopup(() => {
                         chrome.runtime.sendMessage({
                             action: 'showUrlDecode',
                             originalText: info.selectionText,
-                            decodedText: decodedText,
-                            formatType: 'url'
+                            decodedText: decodedText
                         });
-                    }, 100);
-                } catch (e) {
-                    setTimeout(() => {
+                    });
+                });
+            } catch (e) {
+                chrome.action.setPopup({ popup: 'url_decode_popup.html' }, () => {
+                    chrome.action.openPopup(() => {
                         chrome.runtime.sendMessage({
                             action: 'showUrlDecode',
                             originalText: info.selectionText,
-                            decodedText: 'Decode failed: ' + e.message,
-                            formatType: 'url'
+                            decodedText: 'Decode failed: ' + e.message
                         });
-                    }, 100);
-                }
+                    });
+                });
             }
-        });
+        }
     } else if (info.menuItemId === 'jsonFormatter') {
-        chrome.action.openPopup(() => {
-            if (info.selectionText) {
-                const formattedText = formatJson(info.selectionText);
-                setTimeout(() => {
+        if (info.selectionText) {
+            const formattedText = formatJson(info.selectionText);
+            chrome.action.setPopup({ popup: 'json_format_popup.html' }, () => {
+                chrome.action.openPopup(() => {
                     chrome.runtime.sendMessage({
                         action: 'showJsonFormat',
                         originalText: info.selectionText,
-                        formattedText: formattedText,
-                        formatType: 'json'
+                        formattedText: formattedText
                     });
-                }, 100);
-            }
-        });
+                });
+            });
+        }
     }
 });
