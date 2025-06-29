@@ -30,9 +30,9 @@
         "message": "URL Decode Result"
     },
     "extensionName": {
-        "message": "URL Decoder"
+        "message": "URL Decoder && JSON Formatter"
     },
     "extensionDescription": {
-        "message": "Decode selected text using URL decode."
+        "message": "Decode selected text using URL decode && format JSON string inside current web page."
     }
 }
