@@ -82,13 +82,15 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
                     });
                 });
             } else {
-                chrome.action.openPopup(() => {
+                chrome.action.setPopup({ popup: 'json_format_popup.html' }, () => {
+                    chrome.action.openPopup(() => {
                         chrome.runtime.sendMessage({
                             action: 'showJsonFormat',
                             originalText: '',
                             formattedText: ''
                         });
                     });
+                });
             }
             break;
     }
