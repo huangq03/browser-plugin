@@ -31,43 +31,46 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-    if (info.menuItemId === 'urlDecoder') {
-        if (info.selectionText) {
-            try {
-                const decodedText = decodeURIComponent(info.selectionText);
-                chrome.action.setPopup({ popup: 'url_decode_popup.html' }, () => {
-                    chrome.action.openPopup(() => {
-                        chrome.runtime.sendMessage({
-                            action: 'showUrlDecode',
-                            originalText: info.selectionText,
-                            decodedText: decodedText
+    switch (info.menuItemId) {
+        case 'urlDecoder':
+            if (info.selectionText) {
+                try {
+                    const decodedText = decodeURIComponent(info.selectionText);
+                    chrome.action.setPopup({ popup: 'url_decode_popup.html' }, () => {
+                        chrome.action.openPopup(() => {
+                            chrome.runtime.sendMessage({
+                                action: 'showUrlDecode',
+                                originalText: info.selectionText,
+                                decodedText: decodedText
+                            });
                         });
                     });
-                });
-            } catch (e) {
-                chrome.action.setPopup({ popup: 'url_decode_popup.html' }, () => {
+                } catch (e) {
+                    chrome.action.setPopup({ popup: 'url_decode_popup.html' }, () => {
+                        chrome.action.openPopup(() => {
+                            chrome.runtime.sendMessage({
+                                action: 'showUrlDecode',
+                                originalText: info.selectionText,
+                                decodedText: 'Decode failed: ' + e.message
+                            });
+                        });
+                    });
+                }
+            }
+            break;
+        case 'jsonFormatter':
+            if (info.selectionText) {
+                const formattedText = formatJson(info.selectionText);
+                chrome.action.setPopup({ popup: 'json_format_popup.html' }, () => {
                     chrome.action.openPopup(() => {
                         chrome.runtime.sendMessage({
-                            action: 'showUrlDecode',
+                            action: 'showJsonFormat',
                             originalText: info.selectionText,
-                            decodedText: 'Decode failed: ' + e.message
+                            formattedText: formattedText
                         });
                     });
                 });
             }
-        }
-    } else if (info.menuItemId === 'jsonFormatter') {
-        if (info.selectionText) {
-            const formattedText = formatJson(info.selectionText);
-            chrome.action.setPopup({ popup: 'json_format_popup.html' }, () => {
-                chrome.action.openPopup(() => {
-                    chrome.runtime.sendMessage({
-                        action: 'showJsonFormat',
-                        originalText: info.selectionText,
-                        formattedText: formattedText
-                    });
-                });
-            });
-        }
+            break;
     }
 });
