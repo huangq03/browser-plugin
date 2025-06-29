@@ -1,0 +1,38 @@
+{
+    "utilityTools": {
+        "message": "实用工具"
+    },
+    "urlDecoder": {
+        "message": "URL 解码器"
+    },
+    "jsonFormatter": {
+        "message": "JSON 格式化器"
+    },
+    "originalText": {
+        "message": "原始文本:"
+    },
+    "formatButton": {
+        "message": "JSON 格式化"
+    },
+    "formattedText": {
+        "message": "格式化后的文本:"
+    },
+    "decodeButton": {
+        "message": "URL 解码"
+    },
+    "decodedText": {
+        "message": "解码后的文本:"
+    },
+    "jsonFormatResult": {
+        "message": "JSON 格式化结果"
+    },
+    "urlDecodeResult": {
+        "message": "URL 解码结果"
+    },
+    "extensionName": {
+        "message": "URL 解码器"
+    },
+    "extensionDescription": {
+        "message": "使用 URL 解码所选文本。"
+    }
+}

@@ -1,13 +1,17 @@
 {
     "manifest_version": 3,
-    "name": "URL Decoder",
+    "name": "__MSG_extensionName__",
     "version": "1.0",
-    "description": "Decode selected text using URL decode.",
+    "description": "__MSG_extensionDescription__",
+    "default_locale": "en",
     "permissions": ["contextMenus", "activeTab"],
     "action": {
         "default_popup": "url_decode_popup.html"
     },
     "background": {
         "service_worker": "background.js"
+    },
+    "icons": {
+        "128": "icon.svg"
     }
 }

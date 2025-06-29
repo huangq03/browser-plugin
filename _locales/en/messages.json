@@ -1,0 +1,38 @@
+{
+    "utilityTools": {
+        "message": "Utility Tools"
+    },
+    "urlDecoder": {
+        "message": "URL Decoder"
+    },
+    "jsonFormatter": {
+        "message": "Json Formatter"
+    },
+    "originalText": {
+        "message": "Original Text:"
+    },
+    "formatButton": {
+        "message": "JSON Format"
+    },
+    "formattedText": {
+        "message": "Formatted Text:"
+    },
+    "decodeButton": {
+        "message": "URL Decode"
+    },
+    "decodedText": {
+        "message": "Decoded Text:"
+    },
+    "jsonFormatResult": {
+        "message": "JSON Format Result"
+    },
+    "urlDecodeResult": {
+        "message": "URL Decode Result"
+    },
+    "extensionName": {
+        "message": "URL Decoder"
+    },
+    "extensionDescription": {
+        "message": "Decode selected text using URL decode."
+    }
+}

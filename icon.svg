@@ -1,0 +1,8 @@
+<!-- SVG icon resembling the letter 'u' -->
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="128" height="128" fill="#4CAF50"/>
+    
+    <!-- U character -->
+    <path d="M64 32 Q80 32 80 48 V104 Q80 120 64 120 Q48 120 48 104 V48 Q48 32 64 32 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4"/>
+</svg>

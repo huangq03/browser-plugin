@@ -9,25 +9,25 @@ function formatJson(jsonText) {
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
-        id: 'utilityTools',
-        title: '实用工具',
-        contexts: ['selection', 'page'],
-        type: 'normal'
-    });
+    id: 'utilityTools',
+    title: chrome.i18n.getMessage('utilityTools'),
+    contexts: ['selection', 'page'],
+    type: 'normal'
+});
 
-    chrome.contextMenus.create({
-        id: 'urlDecoder',
-        title: 'URL Decoder',
-        parentId: 'utilityTools',
-        contexts: ['selection', 'page']
-    });
+chrome.contextMenus.create({
+    id: 'urlDecoder',
+    title: chrome.i18n.getMessage('urlDecoder'),
+    parentId: 'utilityTools',
+    contexts: ['selection', 'page']
+});
 
-    chrome.contextMenus.create({
-        id: 'jsonFormatter',
-        title: 'Json Formatter',
-        parentId: 'utilityTools',
-        contexts: ['selection', 'page']
-    });
+chrome.contextMenus.create({
+    id: 'jsonFormatter',
+    title: chrome.i18n.getMessage('jsonFormatter'),
+    parentId: 'utilityTools',
+    contexts: ['selection', 'page']
+});
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
