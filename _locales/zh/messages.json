@@ -33,7 +33,7 @@
         "message": "URL 解码器 && JSON 格式化器"
     },
     "extensionDescription": {
-        "message": "页内URL解码器 && JSON格式化器"
+        "message": "页内URL解码器 && JSON格式化器 && Unicode解码器"
     },
     "unicodeDecoder": {
         "message": "Unicode 解码器"
