@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>__MSG_unicodeDecodeResult__</title>
+    <style>
+        body {
+            width: 300px;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <label for="originalText">__MSG_originalText__</label>
+    <textarea id="originalText"></textarea>
+    <button id="decodeButton">__MSG_unicodeDecodeButton__</button>
+    <label for="decodedText">__MSG_decodedText__</label>
+    <textarea id="decodedText" readonly></textarea>
+    <script type="module" src="unicode_decode_popup.js"></script>
+</body>
+</html>

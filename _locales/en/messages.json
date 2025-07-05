@@ -34,5 +34,14 @@
     },
     "extensionDescription": {
         "message": "Decode selected text using URL decode && format JSON string inside current web page."
+    },
+    "unicodeDecoder": {
+        "message": "Unicode Decoder"
+    },
+    "unicodeDecodeButton": {
+        "message": "Unicode Decode"
+    },
+    "unicodeDecodeResult": {
+        "message": "Unicode Decode Result"
     }
 }

@@ -28,6 +28,13 @@ chrome.contextMenus.create({
     parentId: 'utilityTools',
     contexts: ['selection', 'page']
 });
+
+chrome.contextMenus.create({
+    id: 'unicodeDecoder',
+    title: chrome.i18n.getMessage('unicodeDecoder'),
+    parentId: 'utilityTools',
+    contexts: ['selection', 'page']
+});
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
@@ -67,6 +74,44 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
                             });
                         });
                     });
+            }
+            break;
+        case 'unicodeDecoder':
+            if (info.selectionText) {
+                try {
+                    const decodedText = info.selectionText.replace(/\\u([\d\w]{4})/gi, (match, grp) => {
+                        return String.fromCharCode(parseInt(grp, 16));
+                    });
+                    chrome.action.setPopup({ popup: 'unicode_decode_popup.html' }, () => {
+                        chrome.action.openPopup(() => {
+                            chrome.runtime.sendMessage({
+                                action: 'showUnicodeDecode',
+                                originalText: info.selectionText,
+                                decodedText: decodedText
+                            });
+                        });
+                    });
+                } catch (e) {
+                    chrome.action.setPopup({ popup: 'unicode_decode_popup.html' }, () => {
+                        chrome.action.openPopup(() => {
+                            chrome.runtime.sendMessage({
+                                action: 'showUnicodeDecode',
+                                originalText: info.selectionText,
+                                decodedText: 'Decode failed: ' + e.message
+                            });
+                        });
+                    });
+                }
+            } else {
+                chrome.action.setPopup({ popup: 'unicode_decode_popup.html' }, () => {
+                    chrome.action.openPopup(() => {
+                        chrome.runtime.sendMessage({
+                            action: 'showUnicodeDecode',
+                            originalText: '',
+                            decodedText: ''
+                        });
+                    });
+                });
             }
             break;
         case 'jsonFormatter':

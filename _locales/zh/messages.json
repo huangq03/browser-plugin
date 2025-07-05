@@ -34,5 +34,14 @@
     },
     "extensionDescription": {
         "message": "页内URL解码器 && JSON格式化器"
+    },
+    "unicodeDecoder": {
+        "message": "Unicode 解码器"
+    },
+    "unicodeDecodeButton": {
+        "message": "Unicode 解码"
+    },
+    "unicodeDecodeResult": {
+        "message": "Unicode 解码结果"
     }
 }
