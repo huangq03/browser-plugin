@@ -1,16 +1,22 @@
 class JsonViewerPopup {
-  constructor() {
+  constructor(originalText) {
     this.collapsedPaths = new Set()
-    this.initializeElements()
+    this.initializeElements(originalText)
     this.attachEventListeners()
   }
 
-  initializeElements() {
+  initializeElements(originalText) {
     this.jsonInput = document.getElementById("json-input")
     this.formatBtn = document.getElementById("format-btn")
     this.clearBtn = document.getElementById("clear-btn")
     this.jsonOutput = document.getElementById("json-output")
     this.status = document.getElementById("status")
+
+    const input = originalText.trim()
+    if (input.length > 0) {
+        this.jsonInput.value = input
+        this.formatJson()
+    }
   }
 
   attachEventListeners() {
@@ -217,13 +223,10 @@ class JsonViewerPopup {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const originalTextArea = document.getElementById('json-input');
-
     // 处理后台消息
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         if (request.action === 'showJsonFormat') {
-            originalTextArea.value = request.originalText;
-            new JsonViewerPopup()
+            new JsonViewerPopup(request.originalText)
         }
     });
 });
