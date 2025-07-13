@@ -153,7 +153,7 @@ class JsonViewerPopup {
       html += `<span class="line-number">${lineNumber}</span>`
       html += '<span class="toggle-placeholder"></span>'
       html += `<span class="json-content">`
-      html += `<span style="color: transparent;padding-left:${(openBraces+1)*16}px"></span>`
+      html += `<span style="color: transparent;padding-left:${(openBraces+1-i)*16}px"></span>`
       html += `<span class="bracket">}</span>`
       html += "</span></div>"
       lineNumber++
