@@ -78,10 +78,6 @@ class JsonViewerPopup {
 
     if (obj === null) {
       nodes.push({ key, value: null, type: "null", level, path: currentPath })
-    } else if (typeof obj === "boolean") {
-      nodes.push({ key, value: obj, type: "boolean", level, path: currentPath })
-    } else if (typeof obj === "string") {
-      nodes.push({ key, value: obj, type: "string", level, path: currentPath })
     } else if (Array.isArray(obj)) {
       const isCollapsed = this.collapsedPaths.has(currentPath)
       nodes.push({ key, value: obj, type: "array", level, path: currentPath, isCollapsed })
@@ -100,6 +96,14 @@ class JsonViewerPopup {
           nodes.push(...this.parseJsonToNodes(v, level + 1, currentPath, k))
         })
       }
+    } else if (typeof obj === "boolean") {
+      nodes.push({ key, value: obj, type: "boolean", level, path: currentPath })
+    } else if (typeof obj === "string") {
+      nodes.push({ key, value: obj, type: "string", level, path: currentPath })
+    } else if (typeof obj === "number") {
+      nodes.push({ key, value: obj, type: "number", level, path: currentPath })
+    } else {
+        nodes.push({ key, value: obj, type: "missing-type", level, path: currentPath })
     }
 
     return nodes
@@ -111,7 +115,6 @@ class JsonViewerPopup {
     let lineNumber = 1
 
     nodes.forEach((node) => {
-      const indent = "  ".repeat(node.level)
       const hasToggle = node.type === "object" || node.type === "array"
 
       html += `<div class="json-line">`
@@ -129,7 +132,7 @@ class JsonViewerPopup {
 
       // JSON content
       html += `<span class="json-content">`
-      html += `<span style="color: transparent;">${indent}</span>`
+      html += `<span style="color: transparent;padding-left: ${16 + node.level * 16}px;"> </span>`
 
       if (node.key !== null && node.key !== undefined) {
         html += `<span class="key">"${node.key}"</span><span style="color: #666;">: </span>`
@@ -150,7 +153,7 @@ class JsonViewerPopup {
       html += `<span class="line-number">${lineNumber}</span>`
       html += '<span class="toggle-placeholder"></span>'
       html += `<span class="json-content">`
-      html += `<span style="color: transparent;">${"  ".repeat(openBraces - i - 1)}</span>`
+      html += `<span style="color: transparent;padding-left:${(openBraces+1)*16}px"></span>`
       html += `<span class="bracket">}</span>`
       html += "</span></div>"
       lineNumber++
