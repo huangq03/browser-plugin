@@ -14,6 +14,9 @@
     "formatButton": {
         "message": "JSON Format"
     },
+    "clearButton": {
+        "message": "Clear"
+    },
     "formattedText": {
         "message": "Formatted Text:"
     },
